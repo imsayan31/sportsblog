@@ -1,0 +1,25 @@
+<section class="main-header-wrapper">
+  <div class="logo-portion">
+    <h2>{{ siteTitle }}</h2>
+  </div>
+  <div class="nav-menu-portion">
+    <nav>
+      <ul>
+        <li>
+          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+        </li>
+        <li>
+          <a routerLink="/categories" routerLinkActive="active">Category</a>
+        </li>
+        <li>
+          <a routerLink="/blogs" routerLinkActive="active">Blog</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>
+<section class="banner-section" *ngIf="showBanner">
+  <figure>
+    <img [src]="bannerImage" />
+  </figure>
+</section>
