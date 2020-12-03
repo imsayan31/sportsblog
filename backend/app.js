@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const body_parser = require('body-parser');
+const path = require('path');
 
 const app = express();
 
@@ -14,6 +15,7 @@ mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true, use
 });
 
 app.use(body_parser.json());
+app.use('/images', express.static(path.join('backend/images')));
 
 /* Set up for ignoring CORS issue */
 app.use((req, res, next) => {
@@ -50,8 +52,10 @@ app.get('/', (req, res, next) => {
 
 /* Calling Routes */
 const categoryRoutes = require('./routes/sports-category');
+const blogRoutes = require('./routes/sports-blog');
 
 /* Assigning Routes */
 app.use('/api/sports-category', categoryRoutes);
+app.use('/api/sports-blog', blogRoutes);
 
 module.exports = app;

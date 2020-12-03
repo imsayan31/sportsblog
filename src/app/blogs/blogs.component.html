@@ -1,1 +1,25 @@
-<p>blogs works!</p>
+<div class="main-body-container">
+  <h2>Latest News</h2>
+  <div class="add-blog">
+    <a routerLink="/add-blog">Add Blog</a>
+  </div>
+  <div *ngIf="numberOfBlogs > 0;else blogsNotFound">
+    <div class="news-wrap" *ngFor="let eachBlog of blogList">
+      <h4>{{ eachBlog.blog_title }}</h4>
+      <div class="blog-img">
+        <img [src]="eachBlog.blog_image" width="300"/>
+      </div>
+      <div class="news-meta">
+        <span>Posted on: 25th November, 2020</span> |
+        <span>Cricket, Games</span>
+        <span>
+          <button (click)="editBlog(eachBlog._id)">Edit</button>
+        </span>
+      </div>
+      <p>{{ eachBlog.blog_description }}</p>
+    </div>
+  </div>
+  <ng-template #blogsNotFound>
+    <div>No blogs found.</div>
+  </ng-template>
+</div>

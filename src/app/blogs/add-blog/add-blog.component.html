@@ -1,0 +1,38 @@
+<div class="main-body-container">
+  <h2>Add New Blog</h2>
+  <section>
+    <mat-card>
+      <mat-card-title>Add Your Sports Blog</mat-card-title>
+      <form [formGroup]="addBlogForm" (submit)="onAddBlogSubmit()">
+        <div *ngIf="imagePreview" class="img-preview">
+          <img [src]="imagePreview" />
+        </div>
+        <div>
+          <button type="button" mat-stroked-button (click)="selectImage.click()">Upload Image</button>
+          <input type="file" #selectImage (change)="onImageSelect($event)">
+          <mat-error *ngIf="addBlogForm.controls['blog_image'].hasError('required')">Upload an image.</mat-error>
+        </div>
+        <div>
+          <mat-form-field>
+            <input type="text" name="blog_title" formControlName="blog_title" placeholder="Blog Title*" matInput>
+            <mat-error *ngIf="addBlogForm.get('blog_title').errors?.required">Blog title is required.</mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <!-- <ckeditor [config]="{ toolbar: [ 'heading', '|', 'bold', 'italic' ] }" formControlName="blog_desc" matInput></ckeditor> -->
+          <mat-form-field>
+            <textarea formControlName="blog_desc" matInput placeholder="Description*"></textarea>
+            <!-- <input type="text" name="blog_title" formControlName="blog_title" placeholder="Blog Title" matInput> -->
+            <mat-error *ngIf="addBlogForm.get('blog_desc').errors?.required">Blog description is required.</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <button type="submit" mat-raised-button color="primary">Add Blog</button>
+        </div>
+
+      </form>
+
+    </mat-card>
+  </section>
+</div>

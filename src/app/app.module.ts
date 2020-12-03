@@ -16,6 +16,9 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 import { LimitcharPipe } from './limitchar.pipe';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { AddBlogComponent } from './blogs/add-blog/add-blog.component';
+import { EditBlogComponent } from './blogs/edit-blog/edit-blog.component';
+/* import { CKEditorModule } from '@ckeditor/ckeditor5-angular'; */
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
     BlogsComponent,
     AddCategoryComponent,
     LimitcharPipe,
-    EditCategoryComponent
+    EditCategoryComponent,
+    AddBlogComponent,
+    EditBlogComponent
   ],
   imports: [
     BrowserModule,
