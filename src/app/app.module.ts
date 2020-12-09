@@ -18,6 +18,7 @@ import { LimitcharPipe } from './limitchar.pipe';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { AddBlogComponent } from './blogs/add-blog/add-blog.component';
 import { EditBlogComponent } from './blogs/edit-blog/edit-blog.component';
+import { BlogDetailsComponent } from './blogs/blog-details/blog-details.component';
 /* import { CKEditorModule } from '@ckeditor/ckeditor5-angular'; */
 
 @NgModule({
@@ -33,7 +34,8 @@ import { EditBlogComponent } from './blogs/edit-blog/edit-blog.component';
     LimitcharPipe,
     EditCategoryComponent,
     AddBlogComponent,
-    EditBlogComponent
+    EditBlogComponent,
+    BlogDetailsComponent
   ],
   imports: [
     BrowserModule,

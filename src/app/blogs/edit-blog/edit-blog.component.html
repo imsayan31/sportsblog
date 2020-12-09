@@ -1,8 +1,8 @@
 <div class="main-body-container">
-  <h2>Add New Blog</h2>
+  <h2>Edit Blog</h2>
   <section>
     <mat-card>
-      <mat-card-title>Add Your Sports Blog</mat-card-title>
+      <!-- <mat-card-title>Add Your Sports Blog</mat-card-title> -->
       <form [formGroup]="addBlogForm" (submit)="onUpdateBlogSubmit()">
         <div *ngIf="imagePreview" class="img-preview">
           <img [src]="imagePreview" />
@@ -28,7 +28,7 @@
         </div>
 
         <div>
-          <button type="submit" mat-raised-button color="primary">Add Blog</button>
+          <button type="submit" mat-raised-button color="primary">Update Blog</button>
         </div>
 
       </form>

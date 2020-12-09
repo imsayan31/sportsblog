@@ -20,14 +20,16 @@ export class EditBlogComponent implements OnInit {
     this.blogId = this.activateRoute.snapshot.paramMap.get('id');
     this.addBlogForm = new FormGroup({
       blog_title: new FormControl(null, { validators: [Validators.required] }),
-      blog_desc: new FormControl(null, { validators: [Validators.required] }),
+      blog_desc: new FormControl(null),
       blog_image: new FormControl(null, { validators: [Validators.required] })
     });
     this.blogService.getBlogData(this.blogId).subscribe(blogInfo => {
       this.blogDetails = blogInfo.blogDetails;
-      this.addBlogForm.setValue({ 'blog_title': this.blogDetails.blog_title});
-      this.addBlogForm.setValue({ 'blog_desc': this.blogDetails.blog_description});
-      this.addBlogForm.setValue({ 'blog_image': this.blogDetails.blog_image});
+      this.addBlogForm.setValue({
+        blog_title: this.blogDetails.blog_title,
+        blog_desc: this.blogDetails.blog_description,
+        blog_image: this.blogDetails.blog_image
+      });
       this.imagePreview = this.blogDetails.blog_image;
     });
   }
@@ -35,6 +37,33 @@ export class EditBlogComponent implements OnInit {
   onUpdateBlogSubmit() {
     if (this.addBlogForm.invalid) {
       return;
+    }
+
+    if (typeof(this.addBlogForm.value.blog_image) === 'object') {
+      const editBlogData = new FormData();
+      editBlogData.append('blogId', this.blogId);
+      editBlogData.append('blog_title', this.addBlogForm.value.blog_title);
+      editBlogData.append('blog_desc', this.addBlogForm.value.blog_desc);
+      editBlogData.append('blog_image', this.addBlogForm.value.blog_image);
+
+      this.blogService.updateBlog(editBlogData).subscribe(updateBlogSucc => {
+        if (updateBlogSucc.status === 200) {
+          this.router.navigate(['/blogs']);
+        }
+      });
+
+    } else {
+      this.blogFormData = {
+        blogId: this.blogId,
+        blog_title: this.addBlogForm.value.blog_title,
+        blog_desc: this.addBlogForm.value.blog_desc,
+        blog_image: this.addBlogForm.value.blog_image
+      };
+      this.blogService.updateBlog(this.blogFormData).subscribe(updateBlogSucc => {
+        if (updateBlogSucc.status === 200) {
+          this.router.navigate(['/blogs']);
+        }
+      });
     }
 
   }

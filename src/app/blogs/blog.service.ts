@@ -17,7 +17,6 @@ export class BlogService {
   }
 
   addBlog(addBlogData) {
-    console.log(addBlogData);
     return this.http.post<{ status: number, message: string }>
       ('http://localhost:3000/api/sports-blog/add-blog/', addBlogData);
   }
@@ -30,6 +29,21 @@ export class BlogService {
   getBlogData(blogId) {
     return this.http.get<{ status: number, message: string, blogDetails: any }>
       ('http://localhost:3000/api/sports-blog/get-blog?blog_id=' + blogId);
+  }
+
+  addComment(addCommentData) {
+    return this.http.post<{ status: number, message: string }>
+      ('http://localhost:3000/api/sports-comment/add-comment/', addCommentData);
+  }
+
+  fetchComments(blogId) {
+    return this.http.get<{ status: number, message: string, commentList: any }>
+      ('http://localhost:3000/api/sports-comment/get-comments/?blogId=' + blogId);
+  }
+
+  fetchChildComments(blogId) {
+    return this.http.get<{ status: number, message: string, commentList: any }>
+      ('http://localhost:3000/api/sports-comment/get-child-comments?blogId=' + blogId);
   }
 
 }

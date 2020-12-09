@@ -53,9 +53,11 @@ app.get('/', (req, res, next) => {
 /* Calling Routes */
 const categoryRoutes = require('./routes/sports-category');
 const blogRoutes = require('./routes/sports-blog');
+const commentRoutes = require('./routes/sports-comments');
 
 /* Assigning Routes */
 app.use('/api/sports-category', categoryRoutes);
 app.use('/api/sports-blog', blogRoutes);
+app.use('/api/sports-comment', commentRoutes);
 
 module.exports = app;

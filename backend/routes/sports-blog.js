@@ -62,7 +62,7 @@ router.post('/add-blog', multer({ storage: storage }).single('blog_image'), (req
 
 /* Fetch Blogs */
 router.get('/get-blogs', (req, res, next) => {
-  SportsBlogModel.find()
+  SportsBlogModel.find().sort([['createdDtm', -1]])
   .then(blogData => {
     res.status(200).json({
       status: 200,
@@ -78,5 +78,75 @@ router.get('/get-blogs', (req, res, next) => {
     });
   })
 });
+
+/* Fetch Blog Details */
+router.get('/get-blog', (req, res, next) => {
+  SportsBlogModel.findById(req.query.blog_id)
+  .then(blogData => {
+    res.status(200).json({
+      status: 200,
+      message: 'Blog fetched',
+      blogDetails: blogData
+    });
+  })
+  .catch(blogListError => {
+    res.status(404).json({
+      status: 404,
+      message: 'Blog fetched',
+      blogDetails: blogListError
+    });
+  })
+});
+
+router.put('/update-blog', multer({ storage: storage }).single('blog_image'), (req, res, next) => {
+
+  if(!req.file) {
+    let blogData = {
+      blog_title: req.body.blog_title,
+      blog_description: req.body.blog_desc,
+      blog_image: req.body.blog_image
+    }
+    SportsBlogModel.updateOne({
+      _id: req.body.blogId
+    }, blogData)
+      .then(blogUpdated => {
+        res.status(200).json({
+          status: 200,
+          message: 'Blog updated successfully.'
+        });
+      })
+      .catch(blogUpdateError => {
+        res.status(400).json({
+          status: 400,
+          message: 'Blog update failed.'
+        });
+      });
+  } else {
+
+    let serverURL = req.protocol + '://' + req.get('host');
+    let imagePath = serverURL + '/images/' + req.file.filename
+    let blogData = {
+      blog_title: req.body.blog_title,
+      blog_description: req.body.blog_desc,
+      blog_image: imagePath
+    }
+    SportsBlogModel.updateOne({
+      _id: req.body.blogId
+    }, blogData)
+      .then(blogUpdated => {
+        res.status(200).json({
+          status: 200,
+          message: 'Blog updated successfully.'
+        });
+      })
+      .catch(blogUpdateError => {
+        res.status(400).json({
+          status: 400,
+          message: 'Blog update failed.'
+        });
+      });
+  }
+});
+
 
 module.exports = router;

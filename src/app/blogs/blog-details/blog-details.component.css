@@ -1,0 +1,58 @@
+.main-body-container {
+  padding: 30px;
+}
+mat-form-field {
+  width: 50%;
+}
+.mat-raised-button {
+  margin-top: 20px;
+}
+input[type="file"] {
+  visibility: hidden;
+}
+.img-preview img {
+  width: 200px;
+}
+.mat-stroked-button {
+  margin-top: 10px;
+}
+figure img {
+  width: 80%;
+  height: auto;
+}
+.share-section ul li {
+  list-style: none;
+  padding-left: 0;
+  display: inline-block;
+  margin: 5px;
+}
+.comment-data {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+.comment-data h5 {
+  font-size: 16px;
+  margin: 0 0 10px 0;
+}
+.comment-data .comment-desc {
+  margin: 0 0 20px 0;
+}
+.comment-action a {
+  font-size: 12px;
+  text-decoration: none;
+}
+.comment-action a i{
+  font-size: 10px;
+}
+.child-comment-list {
+  border: 1px solid #ccc;
+  background: #ccc;
+  padding: 10px 10px 0 10px;
+  margin-top: 10px;
+  border-radius: 15px;
+  margin-left: 15px;
+  width: auto;
+  font-size: 14px;
+}
