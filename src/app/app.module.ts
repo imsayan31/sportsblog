@@ -13,7 +13,7 @@ import { BlogsComponent } from './blogs/blogs.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddCategoryComponent } from './add-category/add-category.component';
-import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { LimitcharPipe } from './limitchar.pipe';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { AddBlogComponent } from './blogs/add-blog/add-blog.component';
@@ -46,6 +46,7 @@ import { BlogDetailsComponent } from './blogs/blog-details/blog-details.componen
     HttpClientModule,
     MatCardModule,
     MatInputModule,
+    MatSelectModule,
     MatFormFieldModule,
     MatButtonModule
   ],

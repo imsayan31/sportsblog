@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CategoryService } from 'src/app/category/category.service';
 import { BlogService } from '../blog.service';
 
 @Component({
@@ -12,13 +13,18 @@ export class AddBlogComponent implements OnInit {
   addBlogForm: FormGroup;
   imagePreview: string;
   blogFormData: any;
-  constructor(private blogService: BlogService, private router: Router) { }
+  getCategories: any;
+  constructor(private blogService: BlogService, private router: Router, private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.addBlogForm = new FormGroup({
       blog_title: new FormControl(null, { validators: [Validators.required ]}),
+      blog_category: new FormControl(null, { validators: [Validators.required ]}),
       blog_desc: new FormControl(null, { validators: [Validators.required ]}),
       blog_image: new FormControl(null, { validators: [Validators.required ] })
+    });
+    this.categoryService.fetchCategories().subscribe(catResp => {
+      this.getCategories = catResp.categories;
     });
   }
 
