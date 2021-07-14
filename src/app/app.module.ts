@@ -1,25 +1,33 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { TestSportsComponent } from './test-sports/test-sports.component';
-import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { CategoryComponent } from './category/category.component';
-import { BlogsComponent } from './blogs/blogs.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AddCategoryComponent } from './add-category/add-category.component';
-import { MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatSelectModule } from '@angular/material';
-import { LimitcharPipe } from './limitchar.pipe';
-import { EditCategoryComponent } from './edit-category/edit-category.component';
-import { AddBlogComponent } from './blogs/add-blog/add-blog.component';
-import { EditBlogComponent } from './blogs/edit-blog/edit-blog.component';
-import { BlogDetailsComponent } from './blogs/blog-details/blog-details.component';
-import { SpLoaderComponent } from './sp-loader/sp-loader.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { TestSportsComponent } from "./test-sports/test-sports.component";
+import { HomeComponent } from "./home/home.component";
+import { HeaderComponent } from "./header/header.component";
+import { FooterComponent } from "./footer/footer.component";
+import { CategoryComponent } from "./category/category.component";
+import { BlogsComponent } from "./blogs/blogs.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { AddCategoryComponent } from "./add-category/add-category.component";
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatSelectModule,
+} from "@angular/material";
+import { LimitcharPipe } from "./limitchar.pipe";
+import { EditCategoryComponent } from "./edit-category/edit-category.component";
+import { AddBlogComponent } from "./blogs/add-blog/add-blog.component";
+import { EditBlogComponent } from "./blogs/edit-blog/edit-blog.component";
+import { BlogDetailsComponent } from "./blogs/blog-details/blog-details.component";
+import { SpLoaderComponent } from "./sp-loader/sp-loader.component";
+import { UserSidebarComponent } from "./user-sidebar/user-sidebar.component";
 /* import { CKEditorModule } from '@ckeditor/ckeditor5-angular'; */
 
 @NgModule({
@@ -37,7 +45,8 @@ import { SpLoaderComponent } from './sp-loader/sp-loader.component';
     AddBlogComponent,
     EditBlogComponent,
     BlogDetailsComponent,
-    SpLoaderComponent
+    SpLoaderComponent,
+    UserSidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,9 +59,10 @@ import { SpLoaderComponent } from './sp-loader/sp-loader.component';
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

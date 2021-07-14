@@ -1,23 +1,30 @@
 <app-sp-loader *ngIf="showLoader"></app-sp-loader>
-<section class="main-header-wrapper container">
-  <div class="logo-portion">
-    <!-- <h2>{{ siteTitle }}</h2> -->
-    <img [src]="headerLogo" />
-  </div>
-  <div class="nav-menu-portion">
-    <nav>
-      <ul>
-        <li>
-          <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-        </li>
-        <li>
-          <a routerLink="/categories" routerLinkActive="active">Category</a>
-        </li>
-        <li>
-          <a routerLink="/blogs" routerLinkActive="active">Blog</a>
-        </li>
-      </ul>
-    </nav>
+<section class="main-header-wrapper">
+  <div class="container">
+    <div class="logo-portion">
+      <!-- <h2>{{ siteTitle }}</h2> -->
+      <img [src]="headerLogo" />
+    </div>
+    <div class="nav-menu-portion">
+      <nav>
+        <ul>
+          <li>
+            <a
+              routerLink="/"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a routerLink="/categories" routerLinkActive="active">Category</a>
+          </li>
+          <li>
+            <a routerLink="/blogs" routerLinkActive="active">Blog</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </section>
 <section class="banner-section" *ngIf="showBanner">
