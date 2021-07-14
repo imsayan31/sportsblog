@@ -1,6 +1,8 @@
-<section class="main-header-wrapper">
+<app-sp-loader *ngIf="showLoader"></app-sp-loader>
+<section class="main-header-wrapper container">
   <div class="logo-portion">
-    <h2>{{ siteTitle }}</h2>
+    <!-- <h2>{{ siteTitle }}</h2> -->
+    <img [src]="headerLogo" />
   </div>
   <div class="nav-menu-portion">
     <nav>

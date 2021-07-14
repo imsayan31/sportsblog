@@ -5,18 +5,18 @@
   </div>
   <div *ngIf="numberOfBlogs > 0;else blogsNotFound">
     <div class="news-wrap" *ngFor="let eachBlog of blogList">
-      <h4><a [routerLink]="['blog', eachBlog._id]" routerLinkActive="router-link-active" >{{ eachBlog.blog_title }}</a></h4>
+      <h4><a [routerLink]="['blog', eachBlog._id]" routerLinkActive="router-link-active" >{{ eachBlog.title }}</a></h4>
       <div class="blog-img">
-        <img [src]="eachBlog.blog_image" width="300"/>
+        <img [src]="eachBlog.image" width="300"/>
       </div>
       <div class="news-meta">
-        <span>Posted on: 25th November, 2020</span> |
-        <span>Cricket, Games</span>
+        <span>Posted on: {{ eachBlog.posted_on | date:mediumDate }} </span> |
+        <span>{{ eachBlog.category }}</span>
         <span>
           <button (click)="editBlog(eachBlog._id)" mat-raised-button color="primary">Edit</button>
         </span>
       </div>
-      <p>{{ eachBlog.blog_description | limitchar: 400 }}</p>
+      <p>{{ eachBlog.content | limitchar: 400 }}</p>
     </div>
   </div>
   <ng-template #blogsNotFound>

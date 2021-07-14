@@ -21,8 +21,9 @@
         <div>
 
           <mat-form-field>
+            <mat-label>Select one option</mat-label>
             <mat-select name="blog_category" formControlName="blog_category">
-              <mat-option *ngFor="let eachCat of getCategories" [value]="eachCat._id">{{ eachCat.category_name }}</mat-option>
+              <mat-option *ngFor="let eachCat of getCategories" [value]="eachCat.slug">{{ eachCat.name }}</mat-option>
             </mat-select>
             <mat-error *ngIf="addBlogForm.get('blog_category').errors?.required">Blog category is required.</mat-error>
           </mat-form-field>

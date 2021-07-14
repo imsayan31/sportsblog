@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SpLoaderService } from '../sp-loader/sp-loader.service';
 import { BlogService } from './blog.service';
 
 @Component({
@@ -10,13 +11,18 @@ import { BlogService } from './blog.service';
 export class BlogsComponent implements OnInit {
   blogList: any;
   numberOfBlogs: number = 0;
-  constructor(private blogService: BlogService, private router: Router) { }
+  constructor(
+    private blogService: BlogService, 
+    private router: Router,
+    private spLoaderService: SpLoaderService
+    ) { }
 
   ngOnInit() {
+    this.spLoaderService.show();
     this.blogService.fetchBlogs().subscribe(blogRes => {
+      this.spLoaderService.hide();
       this.blogList = blogRes.blogData;
       this.numberOfBlogs = this.blogList.length;
-      console.log(this.blogList.length);
     });
   }
 

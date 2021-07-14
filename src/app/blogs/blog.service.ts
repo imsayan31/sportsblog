@@ -13,22 +13,22 @@ export class BlogService {
 
   fetchBlogs() {
     return this.http.get<{ status: number, message: string, blogData: any }>
-    ('http://localhost:3000/api/sports-blog/get-blogs/');
+    ('http://localhost/basic-backend-setup/wp-json/sportsblog/v1/sports-blog/get-blogs/');
   }
 
   addBlog(addBlogData) {
     return this.http.post<{ status: number, message: string }>
-      ('http://localhost:3000/api/sports-blog/add-blog/', addBlogData);
+      ('http://localhost/basic-backend-setup/wp-json/sportsblog/v1/sports-blog/add-blog/', addBlogData);
   }
 
   updateBlog(blogData) {
     return this.http.put<{ status: number, message: string }>
-      ('http://localhost:3000/api/sports-blog/update-blog/', blogData);
+      ('http://localhost/basic-backend-setup/wp-json/sportsblog/v1/sports-blog/get-blogs/', blogData);
   }
 
   getBlogData(blogId) {
     return this.http.get<{ status: number, message: string, blogDetails: any }>
-      ('http://localhost:3000/api/sports-blog/get-blog?blog_id=' + blogId);
+      ('http://localhost/basic-backend-setup/wp-json/sportsblog/v1/sports-blog/get-blogs/' + blogId);
   }
 
   addComment(addCommentData) {

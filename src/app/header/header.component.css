@@ -1,7 +1,7 @@
 /* Main Header Wrapper */
 .main-header-wrapper{
-  padding: 10px;
-  margin: 0;
+  padding: 25px;
+  /* margin: 0; */
   position: relative;
   top: 0;
 }
@@ -24,10 +24,18 @@
 .main-header-wrapper .nav-menu-portion ul li a{
   text-decoration: none;
   padding: 10px;
+  padding-left: 0px;
+  color: #2A2A2A;
 }
-.main-header-wrapper .nav-menu-portion ul li a.active{
-  color: blue;
-  border-bottom: 1px solid blue;
+.main-header-wrapper .nav-menu-portion ul li a.active {
+  /* color: blue;
+  border-bottom: 1px solid blue; */
+  display: inline-block;
+  content: "";
+  border-bottom: 2px solid #C31815;
+  width: 4rem;
+  /* position: absolute; */
+  top: 55px;
 }
 
 /* Banner Image */

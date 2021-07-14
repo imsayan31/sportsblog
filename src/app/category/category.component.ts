@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SpLoaderService } from '../sp-loader/sp-loader.service';
 import { CategoryService } from './category.service';
 
 @Component({
@@ -9,10 +10,16 @@ import { CategoryService } from './category.service';
 })
 export class CategoryComponent implements OnInit {
   listCategories: any;
-  constructor(private categoryService: CategoryService, public route: Router) { }
+  constructor(
+    private categoryService: CategoryService, 
+    public route: Router,
+    private spLoader: SpLoaderService
+    ) { }
 
   ngOnInit() {
+    this.spLoader.show();
     this.categoryService.fetchCategories().subscribe(catResp => {
+      this.spLoader.hide();
       this.listCategories = catResp.categories;
     });
   }

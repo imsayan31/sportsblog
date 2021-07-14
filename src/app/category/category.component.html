@@ -12,11 +12,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let eachCategory of listCategories;let i = index;">
-        <td>{{ eachCategory.category_name }}</td>
-        <td>{{ eachCategory.category_desc | limitchar:20 }}</td>
+        <td>{{ eachCategory.name }}</td>
+        <td>{{ eachCategory.description | limitchar:20 }}</td>
         <td>
-          <button mat-raised-button color="primary" (click)="onCatEdit(eachCategory._id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> |
-          <button mat-raised-button color="warn" (click)="onCatDelete(eachCategory._id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+          <button mat-raised-button color="primary" (click)="onCatEdit(eachCategory.term_id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button> |
+          <button mat-raised-button color="warn" (click)="onCatDelete(eachCategory.term_id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
         </td>
       </tr>
       <!-- <div *ngIf="listCategories.length > 0; else noCategories">

@@ -9,6 +9,9 @@
   background-color: #333;
   padding-left: 30px;
 }
+.footer-menu-sec {
+  padding-top: 30px;
+}
 .main-footer-wrapper .footer-menu-sec .menu-list {
   width: 20%;
   display: inline-block;

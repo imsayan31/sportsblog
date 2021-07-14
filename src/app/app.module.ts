@@ -19,6 +19,7 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { AddBlogComponent } from './blogs/add-blog/add-blog.component';
 import { EditBlogComponent } from './blogs/edit-blog/edit-blog.component';
 import { BlogDetailsComponent } from './blogs/blog-details/blog-details.component';
+import { SpLoaderComponent } from './sp-loader/sp-loader.component';
 /* import { CKEditorModule } from '@ckeditor/ckeditor5-angular'; */
 
 @NgModule({
@@ -35,7 +36,8 @@ import { BlogDetailsComponent } from './blogs/blog-details/blog-details.componen
     EditCategoryComponent,
     AddBlogComponent,
     EditBlogComponent,
-    BlogDetailsComponent
+    BlogDetailsComponent,
+    SpLoaderComponent
   ],
   imports: [
     BrowserModule,

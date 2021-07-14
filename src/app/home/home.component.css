@@ -1,3 +1,29 @@
 .main-body-container {
-  padding: 30px;
+  /* padding: 30px; */
+}
+.mat-card-header-text {
+  margin-left: 0px !important;
+}
+h3.bloack-header {
+  position: relative;
+  font-weight: 600;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+h3.bloack-header::before {
+  display: inline-block;
+  content: "";
+  border-top: .3rem solid #C31815;
+  width: 5rem;
+  /* margin: 0 1rem; */
+  /* transform: translateY(-1rem); */
+  position: absolute;
+  top: 55px;
+}
+.example-card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.editor-pick-section {
+  margin-bottom: 40px;
 }

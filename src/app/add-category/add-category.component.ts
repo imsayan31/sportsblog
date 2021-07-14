@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CategoryService } from '../category/category.service';
+import { SpLoaderService } from '../sp-loader/sp-loader.service';
 
 @Component({
   selector: 'app-add-category',
@@ -12,7 +13,11 @@ export class AddCategoryComponent implements OnInit {
 
   categoryAddForm: FormGroup;
   catFormData: any;
-  constructor(public categoryService: CategoryService, public router: Router) { }
+  constructor(
+    public categoryService: CategoryService, 
+    public router: Router,
+    private spLoader: SpLoaderService
+    ) { }
 
   ngOnInit() {
     this.categoryAddForm = new FormGroup({
@@ -29,7 +34,9 @@ export class AddCategoryComponent implements OnInit {
       category_name: this.categoryAddForm.value.category_name,
       category_desc: this.categoryAddForm.value.category_desc
     };
+    this.spLoader.show();
     this.categoryService.addCategory(this.catFormData).subscribe(addCatResp => {
+      this.spLoader.hide();
       if (addCatResp.status === 200) {
         this.categoryAddForm.reset();
         this.categoryAddForm.controls['category_name'].setErrors(null);

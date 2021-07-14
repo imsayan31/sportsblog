@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
+  footerLogo = '../../assets/images/footer-logo.png';
   getCurrentDate = new Date();
   showYear;
   constructor() { }
