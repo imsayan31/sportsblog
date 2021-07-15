@@ -15,6 +15,7 @@ export class AddBlogComponent implements OnInit {
   imagePreview: string;
   blogFormData: any;
   getCategories: any;
+  imagePreviewChecking: boolean = false;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -39,6 +40,7 @@ export class AddBlogComponent implements OnInit {
   }
 
   onAddBlogSubmit() {
+    this.imagePreviewChecking = true;
     if (this.addBlogForm.invalid) {
       return;
     }

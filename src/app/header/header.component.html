@@ -3,7 +3,7 @@
   <div class="container">
     <div class="logo-portion">
       <!-- <h2>{{ siteTitle }}</h2> -->
-      <img [src]="headerLogo" />
+      <a routerLink="/"><img [src]="headerLogo" /></a>
     </div>
     <div class="nav-menu-portion">
       <nav>
@@ -21,6 +21,18 @@
           </li>
           <li>
             <a routerLink="/blogs" routerLinkActive="active">Blog</a>
+          </li>
+          <li>
+            <a
+              href="javascript:void(0);"
+              class="login-click"
+              (click)="openLoginModal()"
+            >
+              <img [src]="userIcon" />
+            </a>
+          </li>
+          <li>
+            <img [src]="searchIcon" />
           </li>
         </ul>
       </nav>

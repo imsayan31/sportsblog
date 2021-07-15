@@ -1,0 +1,59 @@
+.site-modal .site-modal-header h2 {
+  display: inline;
+}
+.site-modal .site-modal-header span {
+  float: right;
+}
+.site-modal .site-modal-header span a {
+  color: #2a2a2a;
+}
+.site-modal .site-modal-body {
+  margin-top: 35px;
+}
+.social-login-btn {
+  padding-left: 0;
+}
+.social-login-btn li {
+  list-style: none;
+}
+.social-login-btn li a img {
+  width: 150px;
+}
+.portal-separation {
+  position: absolute;
+  left: -40px;
+  border: 1px solid #333;
+  padding: 5px;
+  border-radius: 20px;
+  top: 30px;
+}
+.portal-separation::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 50px;
+  border: 0.5px solid #333;
+  bottom: 40px;
+  left: 13px;
+}
+.portal-separation::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 50px;
+  border: 0.5px solid #333;
+  top: 40px;
+  left: 13px;
+}
+mat-form-field {
+  width: 85%;
+}
+.form-action-sec {
+  margin-top: 20px;
+}
+.form-action-sec a {
+  float: right;
+  position: relative;
+  right: 40px;
+  top: 10px;
+}

@@ -26,7 +26,10 @@
                 (change)="onImageSelect($event)"
               />
               <mat-error
-                *ngIf="addBlogForm.controls['blog_image'].hasError('required')"
+                *ngIf="
+                  imagePreviewChecking &&
+                  addBlogForm.controls['blog_image'].hasError('required')
+                "
                 >Upload an image.</mat-error
               >
             </div>

@@ -46,3 +46,6 @@
 .banner-section figure img {
   width: 100%;
 }
+.login-click {
+  cursor: pointer;
+}

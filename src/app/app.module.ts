@@ -16,6 +16,7 @@ import { AddCategoryComponent } from "./add-category/add-category.component";
 import {
   MatButtonModule,
   MatCardModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -28,6 +29,7 @@ import { EditBlogComponent } from "./blogs/edit-blog/edit-blog.component";
 import { BlogDetailsComponent } from "./blogs/blog-details/blog-details.component";
 import { SpLoaderComponent } from "./sp-loader/sp-loader.component";
 import { UserSidebarComponent } from "./user-sidebar/user-sidebar.component";
+import { UserAuthModule } from "./user-auth/user-auth.module";
 /* import { CKEditorModule } from '@ckeditor/ckeditor5-angular'; */
 
 @NgModule({
@@ -61,6 +63,8 @@ import { UserSidebarComponent } from "./user-sidebar/user-sidebar.component";
     MatFormFieldModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
+    UserAuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
