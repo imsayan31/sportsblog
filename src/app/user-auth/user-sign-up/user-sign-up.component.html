@@ -1,1 +1,140 @@
-<p>user-sign-up works!</p>
+<!-- <section class="site-modal user-login-modal">
+  <div class="site-modal-content">
+    <div class="site-modal-header">
+      <h2>Create Account</h2>
+      <span>
+        <a href="javascript:void(0);" (click)="closeModal()">
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >close</mat-icon
+          >
+        </a>
+      </span>
+    </div>
+    <div class="site-modal-body"> -->
+<div class="row">
+  <div class="col-sm-12">
+    <div class="login-frm">
+      <form [formGroup]="signUpForm">
+        <div class="col-sm-6">
+          <mat-form-field>
+            <input
+              type="email"
+              name="first_name"
+              formControlName="first_name"
+              placeholder="First Name*"
+              matInput
+            />
+            <mat-error *ngIf="signUpForm.get('first_name').errors?.required"
+              >First name is required.</mat-error
+            >
+            <mat-error *ngIf="signUpForm.get('first_name').errors?.pattern"
+              >First name should contain alphabets.</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <input
+              type="email"
+              name="last_name"
+              formControlName="last_name"
+              placeholder="Last Name*"
+              matInput
+            />
+            <mat-error *ngIf="signUpForm.get('last_name').errors?.required"
+              >Last name is required.</mat-error
+            >
+            <mat-error *ngIf="signUpForm.get('last_name').errors?.pattern"
+              >Last name should contain alphabets.</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <input
+              type="email"
+              name="email"
+              formControlName="email"
+              placeholder="Email*"
+              matInput
+            />
+            <mat-error *ngIf="signUpForm.get('email').errors?.required"
+              >Email is required.</mat-error
+            >
+            <mat-error *ngIf="signUpForm.get('email').errors?.email"
+              >Email is not in format.</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <input
+              type="password"
+              name="password"
+              formControlName="password"
+              placeholder="Password*"
+              matInput
+            />
+            <mat-error *ngIf="signUpForm.get('password').errors?.required"
+              >Password is required.</mat-error
+            >
+            <mat-error *ngIf="signUpForm.get('password').errors?.minLength"
+              >Password should have minimum of 8 characters.</mat-error
+            >
+            <mat-error *ngIf="signUpForm.get('password').errors?.pattern"
+              >Password must contain one upper case letter, one number and one
+              special character.</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field>
+            <input
+              type="password"
+              name="confirm_password"
+              formControlName="confirm_password"
+              placeholder="Confirm Password*"
+              matInput
+            />
+            <mat-error
+              *ngIf="signUpForm.get('confirm_password').errors?.required"
+              >Confirm your password.</mat-error
+            >
+            <!-- <mat-error
+                    *ngIf="signUpForm.get('confirm_password').errors?.pattern"
+                    >.</mat-error
+                  > -->
+          </mat-form-field>
+        </div>
+        <div class="form-action-sec col-sm-12">
+          <button mat-raised-button>Create Account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-sm-12 section-divider">
+    <span class="portal-separation">OR</span>
+  </div>
+  <div class="col-sm-12">
+    <ul class="social-login-btn">
+      <li>
+        <a href="javascript:void(0);">
+          <img src="../../../assets/images/facebook-login.png" />
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0);">
+          <img src="../../../assets/images/google-login.png" />
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- </div>
+    <div class="site-modal-footer">
+      Already have an account?
+      <a href="javascript:void(0);" (click)="openLogin()">Login</a>
+    </div>
+  </div>
+</section>
+ -->

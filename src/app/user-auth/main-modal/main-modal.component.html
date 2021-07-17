@@ -1,0 +1,44 @@
+<section class="site-modal user-login-modal">
+  <div class="site-modal-content">
+    <div class="site-modal-header">
+      <h2>{{ modalHeading }}</h2>
+      <span>
+        <a href="javascript:void(0);" (click)="closeModal()">
+          <mat-icon aria-hidden="false" aria-label="Example home icon"
+            >close</mat-icon
+          >
+        </a>
+      </span>
+    </div>
+    <div class="site-modal-body">
+      <app-user-login
+        *ngIf="showLogin"
+        (showforgotPass)="showForgotPasswordModal()"
+      ></app-user-login>
+      <app-user-forgot-password
+        *ngIf="showforgotPass"
+      ></app-user-forgot-password>
+      <app-user-sign-up *ngIf="showSignUp"></app-user-sign-up>
+    </div>
+    <div class="site-modal-footer">
+      <div *ngIf="showSignUp">
+        Already have an account?
+        <a href="javascript:void(0);" (click)="showLoginModal()">Login</a>
+      </div>
+      <div *ngIf="showLogin">
+        Don't have an account?
+        <a href="javascript:void(0);" (click)="showCreateAccountModal()"
+          >Create Account</a
+        >
+      </div>
+      <div *ngIf="showforgotPass">
+        Don't have an account?
+        <a href="javascript:void(0);" (click)="showCreateAccountModal()"
+          >Create Account</a
+        >
+        or If you already have then
+        <a href="javascript:void(0);" (click)="showLoginModal()">Login</a>
+      </div>
+    </div>
+  </div>
+</section>

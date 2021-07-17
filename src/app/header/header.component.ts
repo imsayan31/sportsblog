@@ -5,6 +5,7 @@ import { SpLoaderService } from "../sp-loader/sp-loader.service";
 import { Subscriber } from "rxjs";
 import { MatDialog } from "@angular/material";
 import { UserLoginComponent } from "../user-auth/user-login/user-login.component";
+import { MainModalComponent } from "../user-auth/main-modal/main-modal.component";
 
 @Component({
   selector: "app-header",
@@ -45,11 +46,11 @@ export class HeaderComponent implements OnInit {
   /* Open Login Modal */
   openLoginModal() {
     console.log("Login pop-up clicked.");
-    const dialogRef = this.dialog.open(UserLoginComponent, {
+    const dialogRef = this.dialog.open(MainModalComponent, {
       width: "650px",
       // hasBackdrop: false,
       position: {
-        top: "10%",
+        top: "5%",
         right: "30%",
       },
     });

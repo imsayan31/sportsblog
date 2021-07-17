@@ -9,12 +9,14 @@ import {
   MatInputModule,
 } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
+import { MainModalComponent } from "./main-modal/main-modal.component";
 
 @NgModule({
   declarations: [
     UserSignUpComponent,
     UserLoginComponent,
     UserForgotPasswordComponent,
+    MainModalComponent,
   ],
   imports: [
     CommonModule,
@@ -23,6 +25,12 @@ import { ReactiveFormsModule } from "@angular/forms";
     MatButtonModule,
     ReactiveFormsModule,
   ],
-  entryComponents: [UserLoginComponent],
+  entryComponents: [
+    UserLoginComponent,
+    UserSignUpComponent,
+    UserForgotPasswordComponent,
+    MainModalComponent,
+  ],
+  providers: [],
 })
 export class UserAuthModule {}
