@@ -8,11 +8,9 @@ import { TestSportsComponent } from "./test-sports/test-sports.component";
 import { HomeComponent } from "./home/home.component";
 import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
-import { CategoryComponent } from "./category/category.component";
 import { BlogsComponent } from "./blogs/blogs.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
-import { AddCategoryComponent } from "./add-category/add-category.component";
 import {
   MatButtonModule,
   MatCardModule,
@@ -22,14 +20,11 @@ import {
   MatInputModule,
   MatSelectModule,
 } from "@angular/material";
-import { LimitcharPipe } from "./limitchar.pipe";
-import { EditCategoryComponent } from "./edit-category/edit-category.component";
-import { AddBlogComponent } from "./blogs/add-blog/add-blog.component";
-import { EditBlogComponent } from "./blogs/edit-blog/edit-blog.component";
 import { BlogDetailsComponent } from "./blogs/blog-details/blog-details.component";
 import { SpLoaderComponent } from "./sp-loader/sp-loader.component";
-import { UserSidebarComponent } from "./user-sidebar/user-sidebar.component";
 import { UserAuthModule } from "./user-auth/user-auth.module";
+import { MyAccountModule } from "./my-account/my-account.module";
+import { SharedModulesModule } from "./shared-modules/shared-modules.module";
 /* import { CKEditorModule } from '@ckeditor/ckeditor5-angular'; */
 
 @NgModule({
@@ -39,16 +34,9 @@ import { UserAuthModule } from "./user-auth/user-auth.module";
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    CategoryComponent,
     BlogsComponent,
-    AddCategoryComponent,
-    LimitcharPipe,
-    EditCategoryComponent,
-    AddBlogComponent,
-    EditBlogComponent,
     BlogDetailsComponent,
     SpLoaderComponent,
-    UserSidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +53,8 @@ import { UserAuthModule } from "./user-auth/user-auth.module";
     MatIconModule,
     MatDialogModule,
     UserAuthModule,
+    MyAccountModule,
+    SharedModulesModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,0 +1,62 @@
+<div class="main-body-container container">
+  <div class="row">
+    <div class="col-md-4">
+      <app-user-sidebar></app-user-sidebar>
+    </div>
+    <div class="col-md-8">
+      <div>
+        <a routerLink="/categories" mat-raised-button color="warn"
+          >Back to list</a
+        >
+      </div>
+      <h2>Edit Category</h2>
+      <mat-card>
+        <mat-card-title>Edit Category Details</mat-card-title>
+        <form [formGroup]="categoryEditForm" (submit)="onEditCategorySubmit()">
+          <div>
+            <mat-form-field>
+              <input
+                type="text"
+                name="category_name"
+                formControlName="category_name"
+                matInput
+                placeholder="Category Name"
+              />
+              <mat-error
+                *ngIf="categoryEditForm.get('category_name').errors?.required"
+                >Category name is required.
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <textarea
+                name="category_desc"
+                formControlName="category_desc"
+                matInput
+                placeholder="Category Description"
+              ></textarea>
+              <mat-error
+                *ngIf="categoryEditForm.get('category_desc').errors?.required"
+                >Category description is required.
+              </mat-error>
+              <mat-error
+                *ngIf="
+                  categoryEditForm.controls['category_desc'].hasError(
+                    'maxlength'
+                  )
+                "
+                >Maximum length would be 100.</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div>
+            <button type="submit" mat-raised-button color="primary">
+              Update Category
+            </button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

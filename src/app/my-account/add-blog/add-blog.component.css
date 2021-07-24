@@ -1,5 +1,9 @@
 .main-body-container {
-  padding: 30px;
+  padding: 60px 0;
+}
+.main-body-container h2 {
+  margin-top: 0px;
+  margin-bottom: 30px;
 }
 mat-form-field {
   width: 100%;
@@ -9,6 +13,10 @@ mat-form-field {
 }
 input[type="file"] {
   visibility: hidden;
+}
+.img-preview,
+.img-preview-btn {
+  text-align: center;
 }
 .img-preview img {
   width: 200px;

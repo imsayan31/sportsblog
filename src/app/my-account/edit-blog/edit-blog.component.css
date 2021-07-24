@@ -1,5 +1,9 @@
 .main-body-container {
-  padding: 30px;
+  padding: 60px 0;
+}
+.main-body-container h2 {
+  margin-top: 0px;
+  margin-bottom: 30px;
 }
 mat-form-field {
   width: 100%;

@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { CategoryService } from "src/app/category/category.service";
+import { BlogService } from "src/app/blogs/blog.service";
 import { SpLoaderService } from "src/app/sp-loader/sp-loader.service";
-import { BlogService } from "../blog.service";
+import { CategoryService } from "../category/category.service";
 
 @Component({
   selector: "app-add-blog",
@@ -12,7 +12,7 @@ import { BlogService } from "../blog.service";
 })
 export class AddBlogComponent implements OnInit {
   addBlogForm: FormGroup;
-  imagePreview: string;
+  imagePreview: string = "../../assets/images/blog-default.png";
   blogFormData: any;
   getCategories: any;
   imagePreviewChecking: boolean = false;

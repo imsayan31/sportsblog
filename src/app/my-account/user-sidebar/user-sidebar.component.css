@@ -1,0 +1,25 @@
+.sidebar-component ul {
+  margin: 0;
+  padding: 0;
+}
+.sidebar-component ul li {
+  list-style: none;
+  border: 1px solid #dfdfdf;
+  padding: 10px 20px;
+  border-bottom: none;
+}
+.sidebar-component ul li:last-child {
+  border-bottom: 1px solid #dfdfdf;
+}
+.sidebar-component ul li a {
+  color: #c31815;
+}
+.sidebar-component ul li a:focus {
+  outline: none;
+  text-decoration: none;
+}
+.sidebar-component ul li a mat-icon {
+  position: relative;
+  top: 6px;
+  right: 6px;
+}
