@@ -33,7 +33,7 @@ export class AddBlogComponent implements OnInit {
       blog_desc: new FormControl(null, { validators: [Validators.required] }),
       blog_image: new FormControl(null, { validators: [Validators.required] }),
     });
-    this.categoryService.fetchCategories().subscribe((catResp) => {
+    this.categoryService.fetchCategories(50, 0).subscribe((catResp) => {
       this.spLoaderService.hide();
       this.getCategories = catResp.categories;
     });

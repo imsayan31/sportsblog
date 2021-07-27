@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
+import { MatPaginator, MatTableDataSource, PageEvent } from "@angular/material";
 import { Router } from "@angular/router";
 import { SpLoaderService } from "src/app/sp-loader/sp-loader.service";
 
@@ -29,10 +30,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: "./category.component.html",
   styleUrls: ["./category.component.css"],
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent implements OnInit, AfterViewInit {
   listCategories: any;
   displayedColumns: string[] = ["name", "description", "action"];
-  dataSource: any;
+  dataSource: any = new MatTableDataSource();
+  totalItems = 10;
+  postsPerPage = 5;
+  pageSizeOptions = [5, 10, 25, 50];
+  offsetVal = 0;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   constructor(
     private categoryService: CategoryService,
     public route: Router,
@@ -41,23 +47,48 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     this.spLoader.show();
-    this.categoryService.fetchCategories().subscribe((catResp) => {
-      this.spLoader.hide();
-      this.listCategories = catResp.categories;
-    });
+    this.categoryService
+      .fetchCategories(this.postsPerPage, this.offsetVal)
+      .subscribe((catResp) => {
+        this.spLoader.hide();
+        this.listCategories = catResp.categories;
+        this.dataSource = catResp.categories;
+        this.totalItems = catResp.count;
+      });
+    this.dataSource.paginator = this.paginator;
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   onCatDelete(catId) {
     this.categoryService.deleteCategory(catId).subscribe((catDelResp) => {
       if (catDelResp.status === 200) {
-        this.categoryService.fetchCategories().subscribe((catResp) => {
-          this.listCategories = catResp.categories;
-        });
+        this.categoryService
+          .fetchCategories(this.postsPerPage, 0)
+          .subscribe((catResp) => {
+            this.dataSource = catResp.categories;
+          });
       }
     });
   }
 
   onCatEdit(catId) {
     this.route.navigate(["/my-account/edit-category/" + catId]);
+  }
+
+  onChangedPage(pageData: PageEvent) {
+    this.offsetVal = pageData.pageIndex + 1;
+    this.postsPerPage = pageData.pageSize;
+    this.spLoader.show();
+    this.categoryService
+      .fetchCategories(this.postsPerPage, this.offsetVal)
+      .subscribe((catResp) => {
+        this.spLoader.hide();
+        this.listCategories = catResp.categories;
+        this.dataSource = catResp.categories;
+        this.totalItems = catResp.count;
+      });
   }
 }

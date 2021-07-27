@@ -12,6 +12,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
+  MatPaginatorModule,
   MatSelectModule,
   MatTableModule,
 } from "@angular/material";
@@ -46,6 +47,7 @@ import { SharedModulesModule } from "../shared-modules/shared-modules.module";
     MatButtonModule,
     MatSelectModule,
     MatTableModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
     HttpClientModule,
     SharedModulesModule,

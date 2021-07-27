@@ -38,17 +38,11 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Action</th>
           <td mat-cell *matCellDef="let element">
-            <button
-              (click)="onCatEdit(eachCategory.term_id)"
-              class="action-btn"
-            >
+            <button (click)="onCatEdit(element.term_id)" class="action-btn">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </button>
             |
-            <button
-              (click)="onCatDelete(eachCategory.term_id)"
-              class="action-btn"
-            >
+            <button (click)="onCatDelete(element.term_id)" class="action-btn">
               <i class="fa fa-trash-o" aria-hidden="true"></i>
             </button>
           </td>
@@ -57,38 +51,13 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
-      <!-- <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let eachCategory of listCategories; let i = index">
-            <td>{{ eachCategory.name }}</td>
-            <td>{{ eachCategory.description | limitchar: 20 }}</td>
-            <td>
-              <button
-                mat-raised-button
-                color="primary"
-                (click)="onCatEdit(eachCategory.term_id)"
-              >
-                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-              </button>
-              |
-              <button
-                mat-raised-button
-                color="warn"
-                (click)="onCatDelete(eachCategory.term_id)"
-              >
-                <i class="fa fa-trash-o" aria-hidden="true"></i>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table> -->
+      <mat-paginator
+        [length]="totalItems"
+        [pageSize]="postsPerPage"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="onChangedPage($event)"
+        showFirstLastButtons
+      ></mat-paginator>
     </div>
   </div>
 </div>
