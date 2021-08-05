@@ -14,6 +14,7 @@ import {
   MatInputModule,
   MatPaginatorModule,
   MatSelectModule,
+  MatSortModule,
   MatTableModule,
 } from "@angular/material";
 import { AddBlogComponent } from "./add-blog/add-blog.component";
@@ -48,6 +49,7 @@ import { SharedModulesModule } from "../shared-modules/shared-modules.module";
     MatSelectModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSortModule,
     ReactiveFormsModule,
     HttpClientModule,
     SharedModulesModule,

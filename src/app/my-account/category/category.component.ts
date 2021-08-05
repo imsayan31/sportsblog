@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator, MatTableDataSource, PageEvent } from "@angular/material";
-import { Router } from "@angular/router";
+import { Event, Router } from "@angular/router";
 import { SpLoaderService } from "src/app/sp-loader/sp-loader.service";
 
 import { CategoryService } from "./category.service";
@@ -37,7 +37,7 @@ export class CategoryComponent implements OnInit, AfterViewInit {
   totalItems = 10;
   postsPerPage = 5;
   pageSizeOptions = [5, 10, 25, 50];
-  offsetVal = 0;
+  offsetVal = 1;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   constructor(
     private categoryService: CategoryService,
@@ -48,7 +48,7 @@ export class CategoryComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.spLoader.show();
     this.categoryService
-      .fetchCategories(this.postsPerPage, this.offsetVal)
+      .fetchCategories(this.postsPerPage, this.offsetVal, "all")
       .subscribe((catResp) => {
         this.spLoader.hide();
         this.listCategories = catResp.categories;
@@ -63,10 +63,12 @@ export class CategoryComponent implements OnInit, AfterViewInit {
   }
 
   onCatDelete(catId) {
+    console.log(catId);
+    return;
     this.categoryService.deleteCategory(catId).subscribe((catDelResp) => {
       if (catDelResp.status === 200) {
         this.categoryService
-          .fetchCategories(this.postsPerPage, 0)
+          .fetchCategories(this.postsPerPage, 1, "all")
           .subscribe((catResp) => {
             this.dataSource = catResp.categories;
           });
@@ -83,12 +85,36 @@ export class CategoryComponent implements OnInit, AfterViewInit {
     this.postsPerPage = pageData.pageSize;
     this.spLoader.show();
     this.categoryService
-      .fetchCategories(this.postsPerPage, this.offsetVal)
+      .fetchCategories(this.postsPerPage, this.offsetVal, "all")
       .subscribe((catResp) => {
         this.spLoader.hide();
         this.listCategories = catResp.categories;
         this.dataSource = catResp.categories;
         this.totalItems = catResp.count;
       });
+  }
+
+  applyFilter(event: any) {
+    const filterVal = (event.target as HTMLInputElement).value;
+    if (filterVal && filterVal.length > 2) {
+      this.spLoader.show();
+      this.categoryService
+        .fetchCategories(this.postsPerPage, this.offsetVal, filterVal)
+        .subscribe((catResp) => {
+          this.spLoader.hide();
+          this.listCategories = catResp.categories;
+          this.dataSource = catResp.categories;
+          this.totalItems = catResp.count;
+        });
+    } else if (!filterVal) {
+      this.categoryService
+        .fetchCategories(this.postsPerPage, this.offsetVal, "all")
+        .subscribe((catResp) => {
+          this.spLoader.hide();
+          this.listCategories = catResp.categories;
+          this.dataSource = catResp.categories;
+          this.totalItems = catResp.count;
+        });
+    }
   }
 }

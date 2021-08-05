@@ -28,7 +28,7 @@ export class EditBlogComponent implements OnInit {
   ngOnInit() {
     this.spLoaderService.show();
     this.blogId = this.activateRoute.snapshot.paramMap.get("id");
-    this.categoryService.fetchCategories(50, 0).subscribe((catResp) => {
+    this.categoryService.fetchCategories(50, 0, "all").subscribe((catResp) => {
       this.spLoaderService.hide();
       this.getCategories = catResp.categories;
     });

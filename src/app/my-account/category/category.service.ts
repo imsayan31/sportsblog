@@ -1,24 +1,30 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class CategoryService {
+  apiURL = environment.apiEndpoint + "sports-category";
+  httpURL: string;
   constructor(private http: HttpClient) {}
-
-  fetchCategories(perPage: number, offset: number) {
+  fetchCategories(perPage: number, offset: number, filterVal: any) {
+    this.httpURL =
+      this.apiURL +
+      "/get-categories/" +
+      perPage +
+      "/" +
+      offset +
+      "/" +
+      filterVal;
+    console.log(this.httpURL);
     return this.http.get<{
       status: number;
       message: string;
       categories: any;
       count: number;
-    }>(
-      "http://localhost/basic-backend-setup/wp-json/sportsblog/v1/sports-category/get-categories/" +
-        perPage +
-        "/" +
-        offset
-    );
+    }>(this.httpURL);
   }
 
   addCategory(categoryData) {

@@ -7,13 +7,14 @@ import { CategoryService } from "../category/category.service";
 @Component({
   selector: "app-edit-category",
   templateUrl: "./edit-category.component.html",
-  styles: [],
+  styleUrls: ["./edit-category.component.css"],
 })
 export class EditCategoryComponent implements OnInit {
   categoryEditForm: FormGroup;
   categoryId: string;
   categoryDetails: any;
   updatedCatData: any;
+  categoryName: string;
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService,
@@ -37,6 +38,7 @@ export class EditCategoryComponent implements OnInit {
       .subscribe((catSuccess) => {
         this.spLoader.hide();
         this.categoryDetails = catSuccess.catDetails;
+        this.categoryName = catSuccess.catDetails.name;
         this.categoryEditForm.patchValue({
           category_name: catSuccess.catDetails.name,
           category_desc: catSuccess.catDetails.description,

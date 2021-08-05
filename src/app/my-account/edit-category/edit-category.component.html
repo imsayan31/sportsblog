@@ -1,17 +1,19 @@
 <div class="main-body-container container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <app-user-sidebar></app-user-sidebar>
     </div>
-    <div class="col-md-8">
-      <div>
-        <a routerLink="/categories" mat-raised-button color="warn"
-          >Back to list</a
+    <div class="col-md-9">
+      <h2>Edit details for: {{ categoryName }}</h2>
+      <div class="action-new-btn">
+        <a routerLink="/my-account/categories"
+          ><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back to
+          list</a
         >
       </div>
-      <h2>Edit Category</h2>
+
       <mat-card>
-        <mat-card-title>Edit Category Details</mat-card-title>
+        <!-- <mat-card-title>Edit Category Details</mat-card-title> -->
         <form [formGroup]="categoryEditForm" (submit)="onEditCategorySubmit()">
           <div>
             <mat-form-field>
@@ -51,9 +53,7 @@
             </mat-form-field>
           </div>
           <div>
-            <button type="submit" mat-raised-button color="primary">
-              Update Category
-            </button>
+            <button type="submit" mat-raised-button>Update Category</button>
           </div>
         </form>
       </mat-card>

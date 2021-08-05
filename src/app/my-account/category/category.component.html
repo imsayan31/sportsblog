@@ -10,7 +10,23 @@
           ><i class="fa fa-plus" aria-hidden="true"></i> Add Category</a
         >
       </div>
-      <table mat-table [dataSource]="listCategories" class="mat-elevation-z8">
+      <div>
+        <mat-form-field>
+          <mat-label>Search by name</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. ium"
+            #input
+          />
+        </mat-form-field>
+      </div>
+      <table
+        mat-table
+        [dataSource]="listCategories"
+        matSort
+        class="mat-elevation-z8"
+      >
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
