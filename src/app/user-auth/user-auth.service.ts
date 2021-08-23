@@ -11,6 +11,7 @@ import { UserSignUpComponent } from "./user-sign-up/user-sign-up.component";
 export class UserAuthService {
   public apiURL = environment.apiEndpoint + "user-auth";
   public httpURL: string;
+  private token: string;
   constructor(private httpClient: HttpClient) {}
 
   addUser(signUpData) {
@@ -20,5 +21,22 @@ export class UserAuthService {
       this.httpURL,
       signUpData
     );
+  }
+
+  userLoginFunc(loginData) {
+    this.httpURL = this.apiURL + "/user-login/";
+    return this.httpClient.post<{
+      status: number;
+      token: string;
+      message: string;
+    }>(this.httpURL, loginData);
+  }
+
+  setToken(responseToken: string) {
+    this.token = responseToken;
+  }
+
+  getToken() {
+    return this.token;
   }
 }

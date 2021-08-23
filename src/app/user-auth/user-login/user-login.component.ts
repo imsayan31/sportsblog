@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatDialogRef } from "@angular/material";
+import { UserAuthService } from "../user-auth.service";
 /* import { EventEmitter } from "events"; */
 /* import { UserForgotPasswordComponent } from "../user-forgot-password/user-forgot-password.component"; */
 /* import { UserSignUpComponent } from "../user-sign-up/user-sign-up.component"; */
@@ -15,9 +16,11 @@ export class UserLoginComponent implements OnInit {
   showPasswordVal = true;
   //@Output() showSignUp = new EventEmitter();
   loginForm: FormGroup;
+  loginFormData: any;
   constructor(
     public dialogData: MatDialog,
-    public dialogRef: MatDialogRef<UserLoginComponent>
+    public dialogRef: MatDialogRef<UserLoginComponent>,
+    private userAuthService: UserAuthService
   ) {}
 
   ngOnInit() {
@@ -38,28 +41,24 @@ export class UserLoginComponent implements OnInit {
 
   openForgotPassword() {
     this.showforgotPass.emit(this.showPasswordVal);
-    //this.closeModal();
-    //this.userAuthService.openForgotPasswordModal();
-    /* this.dialogData.open(UserForgotPasswordComponent, {
-      width: "650px",
-      // hasBackdrop: false,
-      position: {
-        top: "10%",
-        right: "30%",
-      },
-    }); */
   }
 
-  /* openCreateAccount() {
-    this.closeModal();
-    //this.userAuthService.openSignUpModal();
-    this.dialogData.open(UserSignUpComponent, {
-      width: "750px",
-      // hasBackdrop: false,
-      position: {
-        top: "10%",
-        right: "25%",
+  onLoginSubmit() {
+    if (this.loginForm.invalid) {
+      return;
+    }
+    this.loginFormData = {
+      email: this.loginForm.value.user_email,
+      password: this.loginForm.value.user_password,
+    };
+    this.userAuthService.userLoginFunc(this.loginFormData).subscribe(
+      (userSuccess) => {
+        console.log(userSuccess);
+        this.userAuthService.setToken(userSuccess.token);
       },
-    });
-  } */
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }

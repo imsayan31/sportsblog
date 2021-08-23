@@ -10,6 +10,8 @@ import {
 } from "@angular/material";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MainModalComponent } from "./main-modal/main-modal.component";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { UserAuthInterceptor } from "./user-auth-interceptor";
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { MainModalComponent } from "./main-modal/main-modal.component";
     UserForgotPasswordComponent,
     MainModalComponent,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: UserAuthInterceptor, multi: true },
+  ],
 })
 export class UserAuthModule {}

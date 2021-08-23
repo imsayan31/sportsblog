@@ -14,7 +14,7 @@
 <div class="row">
   <div class="col-sm-8">
     <div class="login-frm">
-      <form [formGroup]="loginForm">
+      <form [formGroup]="loginForm" (submit)="onLoginSubmit()">
         <div class="">
           <mat-form-field>
             <input
@@ -35,7 +35,7 @@
         <div>
           <mat-form-field>
             <input
-              type="text"
+              type="password"
               name="user_password"
               formControlName="user_password"
               placeholder="Password*"
