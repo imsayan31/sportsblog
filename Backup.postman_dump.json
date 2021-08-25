@@ -1,0 +1,55 @@
+{
+	"version": 1,
+	"collections": [
+		{
+			"id": "f39b3bd0-11e4-4a42-9cb3-fa587cda2fb0",
+			"uid": "0-f39b3bd0-11e4-4a42-9cb3-fa587cda2fb0",
+			"name": "Test ",
+			"description": null,
+			"auth": null,
+			"events": null,
+			"variables": [],
+			"order": [
+				"24dce9f3-d930-4e96-a8ab-b93e475cc5e7"
+			],
+			"folders_order": [],
+			"protocolProfileBehavior": {},
+			"createdAt": "2021-05-17T10:43:33.790Z",
+			"folders": [],
+			"requests": [
+				{
+					"id": "24dce9f3-d930-4e96-a8ab-b93e475cc5e7",
+					"uid": "0-24dce9f3-d930-4e96-a8ab-b93e475cc5e7",
+					"name": "country live API",
+					"url": "",
+					"description": "",
+					"data": null,
+					"dataOptions": null,
+					"dataMode": null,
+					"headerData": [],
+					"method": "GET",
+					"pathVariableData": [],
+					"queryParams": [],
+					"auth": null,
+					"events": [],
+					"folder": null,
+					"responses_order": [],
+					"currentHelper": null,
+					"helperAttributes": null,
+					"collectionId": "f39b3bd0-11e4-4a42-9cb3-fa587cda2fb0",
+					"headers": "",
+					"pathVariables": {}
+				}
+			]
+		}
+	],
+	"environments": [
+		{
+			"id": "289995a7-ffa6-4aa4-af0e-5e1d84ee9efc",
+			"name": "My Workspace - globals",
+			"values": []
+		}
+	],
+	"headerPresets": [],
+	"globals": []
+}
