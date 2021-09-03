@@ -24,4 +24,9 @@ table {
     color: #c31815;
     background: none;
 }
-  
+.mat-column-image{
+    padding: 20px;
+}
+.my-blog-img{
+    width: 100px;
+}

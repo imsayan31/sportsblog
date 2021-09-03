@@ -87,7 +87,7 @@ export class EditBlogComponent implements OnInit {
         .subscribe((updateBlogSucc) => {
           this.spLoaderService.hide();
           if (updateBlogSucc.status === 200) {
-            this.router.navigate(["/blogs"]);
+            this.router.navigate(["/my-account/my-blogs"]);
           }
         });
     }

@@ -1,9 +1,9 @@
 <div class="main-body-container container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-3">
       <app-user-sidebar></app-user-sidebar>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-9">
       <h2>Edit Blog</h2>
       <section>
         <mat-card>
@@ -12,7 +12,7 @@
             <div *ngIf="imagePreview" class="img-preview">
               <img [src]="imagePreview" />
             </div>
-            <div>
+            <div class="img-preview-btn">
               <button
                 type="button"
                 mat-stroked-button
@@ -78,7 +78,7 @@
             </div>
 
             <div>
-              <button type="submit" mat-raised-button color="primary">
+              <button type="submit" mat-raised-button>
                 Update Blog
               </button>
             </div>

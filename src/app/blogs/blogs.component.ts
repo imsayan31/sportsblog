@@ -19,7 +19,7 @@ export class BlogsComponent implements OnInit {
 
   ngOnInit() {
     this.spLoaderService.show();
-    this.blogService.fetchBlogs().subscribe((blogRes) => {
+    this.blogService.fetchBlogs(100, 1, 'all').subscribe((blogRes) => {
       this.spLoaderService.hide();
       this.blogList = blogRes.blogData;
       this.numberOfBlogs = this.blogList.length;
@@ -34,7 +34,7 @@ export class BlogsComponent implements OnInit {
     this.spLoaderService.show();
     this.blogService.deleteBlog(blogId).subscribe(
       (blogDeleted) => {
-        this.blogService.fetchBlogs().subscribe((blogRes) => {
+        this.blogService.fetchBlogs(100, 1, 'all').subscribe((blogRes) => {
           this.spLoaderService.hide();
           this.blogList = blogRes.blogData;
           this.numberOfBlogs = this.blogList.length;

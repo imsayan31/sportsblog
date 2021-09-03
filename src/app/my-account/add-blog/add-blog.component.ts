@@ -74,7 +74,7 @@ export class AddBlogComponent implements OnInit {
       (addedBlog) => {
         this.spLoaderService.hide();
         if (addedBlog.status === 200) {
-          this.router.navigate(["/blogs"]);
+          this.router.navigate(["/my-account/my-blogs"]);
         }
       },
       (addBlogError) => {
