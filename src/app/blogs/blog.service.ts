@@ -1,17 +1,19 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class BlogService {
+  apiURL = environment.apiEndpoint + "sports-blog";
+  httpURL: string;
   constructor(private http: HttpClient) {}
 
-  fetchBlogs() {
-    return this.http.get<{ status: number; message: string; blogData: any }>(
-      "http://localhost/basic-backend-setup/wp-json/sportsblog/v1/sports-blog/get-blogs/"
-    );
+  fetchBlogs(perPage: number, offset: number, filterVal: any) {
+    this.httpURL = this.apiURL + "/get-blogs/" + perPage + "/" + offset + "/" + filterVal;
+    return this.http.get<{ status: number; message: string; blogData: any, count: number }>(this.httpURL);
   }
 
   addBlog(addBlogData) {

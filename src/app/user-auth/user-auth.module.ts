@@ -34,7 +34,7 @@ import { UserAuthInterceptor } from "./user-auth-interceptor";
     MainModalComponent,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: UserAuthInterceptor, multi: true },
+    /* { provide: HTTP_INTERCEPTORS, useClass: UserAuthInterceptor, multi: true }, */
   ],
 })
 export class UserAuthModule {}

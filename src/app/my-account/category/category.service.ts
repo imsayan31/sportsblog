@@ -10,15 +10,8 @@ export class CategoryService {
   httpURL: string;
   constructor(private http: HttpClient) {}
   fetchCategories(perPage: number, offset: number, filterVal: any) {
-    this.httpURL =
-      this.apiURL +
-      "/get-categories/" +
-      perPage +
-      "/" +
-      offset +
-      "/" +
-      filterVal;
-    console.log(this.httpURL);
+    this.httpURL = this.apiURL + "/get-categories/" + perPage + "/" + offset + "/" + filterVal;
+    
     return this.http.get<{
       status: number;
       message: string;

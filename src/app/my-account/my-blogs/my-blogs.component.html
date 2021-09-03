@@ -1,0 +1,80 @@
+<div class="main-body-container container">
+    <div class="row">
+      <div class="col-md-3">
+        <app-user-sidebar></app-user-sidebar>
+      </div>
+      <div class="col-md-9">
+        <h2>My Blogs</h2>
+        <div class="action-new-btn">
+          <a routerLink="/my-account/add-blog"
+            ><i class="fa fa-plus" aria-hidden="true"></i> Add Blog</a
+          >
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Search by name</mat-label>
+            <input
+              matInput
+              (keyup)="applyFilter($event)"
+              placeholder="Ex. ium"
+              #input
+            />
+          </mat-form-field>
+        </div>
+        <table
+          mat-table
+          [dataSource]="listCategories"
+          matSort
+          class="mat-elevation-z8"
+        >
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+  
+          <!-- Position Column -->
+          <!-- <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef>No.</th>
+            <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+          </ng-container> -->
+  
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+          </ng-container>
+  
+          <!-- Weight Column -->
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.content | limitchar: 50 }}
+            </td>
+          </ng-container>
+  
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>Action</th>
+            <td mat-cell *matCellDef="let element">
+              <button (click)="onCatEdit(element.term_id)" class="action-btn">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+              </button>
+              |
+              <button (click)="onCatDelete(element.term_id)" class="action-btn">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+              </button>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator
+          [length]="totalItems"
+          [pageSize]="postsPerPage"
+          [pageSizeOptions]="pageSizeOptions"
+          (page)="onChangedPage($event)"
+          showFirstLastButtons
+        ></mat-paginator>
+      </div>
+    </div>
+  </div>
+  

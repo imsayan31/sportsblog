@@ -25,6 +25,7 @@ import { AddCategoryComponent } from "./add-category/add-category.component";
 import { CategoryComponent } from "./category/category.component";
 import { EditCategoryComponent } from "./edit-category/edit-category.component";
 import { SharedModulesModule } from "../shared-modules/shared-modules.module";
+import { MyBlogsComponent } from './my-blogs/my-blogs.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SharedModulesModule } from "../shared-modules/shared-modules.module";
     AddCategoryComponent,
     CategoryComponent,
     EditCategoryComponent,
+    MyBlogsComponent,
   ],
   imports: [
     CommonModule,
