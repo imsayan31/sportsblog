@@ -12,8 +12,14 @@ export class BlogService {
   constructor(private http: HttpClient) {}
 
   fetchBlogs(perPage?: number, offset?: number, filterVal?: any) {
-    this.httpURL = this.apiURL + "/get-blogs/" + perPage + "/" + offset + "/" + filterVal;
-    return this.http.get<{ status: number; message: string; blogData: any, count: number }>(this.httpURL);
+    this.httpURL =
+      this.apiURL + "/get-blogs/" + perPage + "/" + offset + "/" + filterVal;
+    return this.http.get<{
+      status: number;
+      message: string;
+      blogData: any;
+      count: number;
+    }>(this.httpURL);
   }
 
   addBlog(addBlogData) {

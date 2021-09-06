@@ -1,6 +1,53 @@
 .main-body-container {
   padding: 30px;
 }
+.main-body-container h2 {
+  font-weight: 600;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  position: relative;
+}
+.main-body-container h2::before {
+  display: inline-block;
+  content: "";
+  border-top: 0.3rem solid #c31815;
+  width: 5rem;
+  position: absolute;
+  top: 60px;
+}
 .add-blog {
   text-align: right;
+}
+.news-wrap {
+  position: relative;
+}
+.example-card .category-section {
+  position: absolute;
+  background: #c31815;
+  color: #fff;
+  padding: 6px 15px;
+  right: -8px;
+  border-bottom-left-radius: 30px;
+}
+.news-wrap p {
+  height: 100px;
+}
+.news-wrap .example-card {
+  margin-bottom: 30px;
+}
+.news-wrap .example-card img {
+  height: 263px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.mat-card-actions a.mat-button {
+  font-size: 15px;
+  color: #c31815;
+}
+.mat-card-actions a.mat-button span.action-counter {
+  margin-left: 8px;
+  color: #c31815;
+}
+.mat-card-title a {
+  color: #c31815;
 }

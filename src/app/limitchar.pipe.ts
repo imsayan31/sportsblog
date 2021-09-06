@@ -1,15 +1,13 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: 'limitchar'
+  name: "limitchar",
 })
 export class LimitcharPipe implements PipeTransform {
-
   transform(value: any, ...args: any[]): any {
-    if (value.length > args) {
-      return value.substring(0, args) + '...';
+    if (value && value.length > args) {
+      return value.substring(0, args) + "...";
     }
     return value;
   }
-
 }

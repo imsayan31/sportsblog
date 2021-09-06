@@ -1,44 +1,85 @@
 <div class="main-body-container container">
   <h2>Latest News</h2>
-  <div class="add-blog">
+  <!-- <div class="add-blog">
     <a routerLink="/add-blog">Add Blog</a>
-  </div>
+  </div> -->
   <div *ngIf="numberOfBlogs > 0; else blogsNotFound">
-    <div class="news-wrap" *ngFor="let eachBlog of blogList">
-      <h4>
-        <a
-          [routerLink]="['blog', eachBlog.ID]"
-          routerLinkActive="router-link-active"
-          >{{ eachBlog.title }}</a
-        >
-      </h4>
-      <div class="blog-img">
-        <img [src]="eachBlog.image" width="300" />
+    <div class="row">
+      <div class="news-wrap" *ngFor="let eachBlog of blogList">
+        <div class="col-sm-4">
+          <mat-card class="example-card">
+            <div class="category-section">
+              <i class="fa fa-tag" aria-hidden="true"></i>
+              {{ eachBlog.category }}
+            </div>
+            <a
+              [routerLink]="[eachBlog.ID]"
+              routerLinkActive="router-link-active"
+            >
+              <img
+                mat-card-image
+                [src]="eachBlog.image"
+                width="300"
+                [alt]="eachBlog.title"
+              />
+            </a>
+            <mat-card-header>
+              <mat-card-title
+                ><a
+                  [routerLink]="[eachBlog.ID]"
+                  routerLinkActive="router-link-active"
+                  >{{ eachBlog.title | limitchar: 50 }}</a
+                ></mat-card-title
+              >
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ eachBlog.content | limitchar: 200 }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <a mat-button title="Like">
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                <span class="action-counter">200+</span>
+              </a>
+              <a mat-button title="Share">
+                <i class="fa fa-share" aria-hidden="true"></i>
+                <span class="action-counter">50+</span>
+              </a>
+              <a mat-button title="Comments">
+                <i class="fa fa-comments" aria-hidden="true"></i>
+                <span class="action-counter">250+</span>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+
+        <!-- <div class="news-meta">
+          <span>Posted on: {{ eachBlog.posted_on | date: mediumDate }} </span> |
+          
+          <span>
+            <button
+              (click)="editBlog(eachBlog.ID)"
+              mat-raised-button
+              color="primary"
+            >
+              Edit
+            </button>
+            <button
+              (click)="deleteBlog(eachBlog.ID)"
+              mat-raised-button
+              color="warn"
+            >
+              Delete
+            </button>
+          </span>
+        </div> -->
       </div>
-      <div class="news-meta">
-        <span>Posted on: {{ eachBlog.posted_on | date: mediumDate }} </span> |
-        <span>{{ eachBlog.category }}</span>
-        <span>
-          <button
-            (click)="editBlog(eachBlog.ID)"
-            mat-raised-button
-            color="primary"
-          >
-            Edit
-          </button>
-          <button
-            (click)="deleteBlog(eachBlog.ID)"
-            mat-raised-button
-            color="warn"
-          >
-            Delete
-          </button>
-        </span>
-      </div>
-      <p>{{ eachBlog.content | limitchar: 400 }}</p>
     </div>
   </div>
   <ng-template #blogsNotFound>
-    <div>No blogs found.</div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="alert alert-danger">No blogs found</div>
+      </div>
+    </div>
   </ng-template>
 </div>

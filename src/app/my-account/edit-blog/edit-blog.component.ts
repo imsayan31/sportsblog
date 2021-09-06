@@ -17,6 +17,7 @@ export class EditBlogComponent implements OnInit {
   blogDetails: any;
   blogId: string;
   getCategories: any;
+  blogTitle: string;
   constructor(
     private blogService: BlogService,
     private router: Router,
@@ -49,6 +50,7 @@ export class EditBlogComponent implements OnInit {
         blog_image: this.blogDetails.image,
       });
       this.imagePreview = this.blogDetails.image;
+      this.blogTitle = this.blogDetails.title;
     });
   }
 

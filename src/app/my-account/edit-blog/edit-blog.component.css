@@ -4,6 +4,7 @@
 .main-body-container h2 {
   margin-top: 0px;
   margin-bottom: 30px;
+  display: inline-block;
 }
 mat-form-field {
   width: 100%;
@@ -23,4 +24,19 @@ input[type="file"] {
 .img-preview,
 .img-preview-btn {
   text-align: center;
+}
+.main-body-container .action-new-btn {
+  float: right;
+  display: inline-block;
+  background: #c31815;
+  padding: 8px 20px;
+  border-radius: 5px;
+}
+.main-body-container .action-new-btn a {
+  color: #ffffff;
+}
+.main-body-container .action-btn {
+  border: none;
+  color: #c31815;
+  background: none;
 }

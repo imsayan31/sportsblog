@@ -1,68 +1,166 @@
-<div class="main-body-container">
-  <h1>{{ blogTitle }}</h1>
-  <figure>
-    <img [src]="blogImage">
-  </figure>
-  <p>{{ blogDescription }}</p>
-  <section class="share-section">
-    <ul>
-      <li>
-        <a (click)="onBlogLike()" mat-stroked-button color="primary">Like</a>
-      </li>
-      <li>
-        <a (click)="onBlogLike()" mat-stroked-button color="warn">Share</a>
-      </li>
-      <li>
-        <a (click)="onBlogComment()" mat-stroked-button color="accent">Comment</a>
-      </li>
-    </ul>
-  </section>
-  <section class="comment-section">
-    <div class="list-of-comments" *ngIf="parentCommentLength > 0; else noCommentsFound">
-      <div class="comment-data" *ngFor="let eachComment of listOfComments">
-        <h5>{{ eachComment.name }}</h5>
-        <div class="comment-desc">{{ eachComment.comments }}</div>
-        <div class="comment-action">
-          <a href="javascript:void(0);" (click)="onReplyComment(eachComment._id)"><i class="fa fa-reply"></i> Reply</a>
-        </div>
-        <div *ngFor="let eachChildComment of listOfChildComments">
-          <div class="child-comment-list" *ngIf="eachChildComment.parent_id === eachComment._id">
-            <h5>{{ eachChildComment.name }}</h5>
-            <div class="comment-desc">{{ eachChildComment.comments }}</div>
+<div class="main-body-container container">
+  <div class="row">
+    <article class="col-sm-9 blog-details">
+      <h1>{{ blogTitle }}</h1>
+      <div class="blog-meta-data">
+        <ul>
+          <li>
+            <i class="fa fa-calendar" aria-hidden="true"></i>
+            {{ blogPostedOn | date: medium }}
+          </li>
+          <li>
+            <i class="fa fa-tag" aria-hidden="true"></i>
+            {{ blogCategory }}
+          </li>
+          <li>
+            <i class="fa fa-share" aria-hidden="true"></i>
+            200+
+          </li>
+          <li>
+            <i class="fa fa-comments" aria-hidden="true"></i>
+            200+
+          </li>
+        </ul>
+      </div>
+      <figure>
+        <img [src]="blogImage" />
+      </figure>
+      <p>{{ blogDescription }}</p>
+      <section class="share-section">
+        <ul>
+          <li>
+            <a (click)="onBlogLike()" mat-stroked-button
+              ><i class="fa fa-heart-o" aria-hidden="true"></i> Like</a
+            >
+          </li>
+          <li>
+            <a (click)="onBlogLike()" mat-stroked-button
+              ><i class="fa fa-share" aria-hidden="true"></i> Share</a
+            >
+          </li>
+          <li>
+            <a (click)="onBlogComment()" mat-stroked-button
+              ><i class="fa fa-comments" aria-hidden="true"></i> Comment</a
+            >
+          </li>
+        </ul>
+      </section>
+      <section class="comment-section">
+        <div
+          class="list-of-comments"
+          *ngIf="parentCommentLength > 0; else noCommentsFound"
+        >
+          <div class="comment-data" *ngFor="let eachComment of listOfComments">
+            <h5>{{ eachComment.name }}</h5>
+            <div class="comment-desc">{{ eachComment.comments }}</div>
+            <div class="comment-action">
+              <a
+                href="javascript:void(0);"
+                (click)="onReplyComment(eachComment._id)"
+                ><i class="fa fa-reply"></i> Reply</a
+              >
+            </div>
+            <div *ngFor="let eachChildComment of listOfChildComments">
+              <div
+                class="child-comment-list"
+                *ngIf="eachChildComment.parent_id === eachComment._id"
+              >
+                <h5>{{ eachChildComment.name }}</h5>
+                <div class="comment-desc">{{ eachChildComment.comments }}</div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+        <!-- <ng-template #noCommentsFound>
+          <div>No comments found.</div>
+        </ng-template> -->
+        <div class="comment-form" *ngIf="showCommentForm">
+          <mat-card>
+            <h3>Your Comments</h3>
+            <form [formGroup]="commentForm" (submit)="onCommentSubmit()">
+              <input
+                type="hidden"
+                formControlName="parent_id"
+                name="parent_id"
+              />
+              <div class="row">
+                <div class="col-sm-6">
+                  <mat-form-field>
+                    <input
+                      type="text"
+                      formControlName="comment_name"
+                      name="comment_name"
+                      matInput
+                      placeholder="Name"
+                    />
+                    <mat-error
+                      *ngIf="
+                        commentForm.controls['comment_name'].hasError(
+                          'required'
+                        )
+                      "
+                      >Name is required.</mat-error
+                    >
+                    <mat-error
+                      *ngIf="commentForm.get('comment_name').errors?.pattern"
+                      >Name should contain alphabets.</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6">
+                  <mat-form-field>
+                    <input
+                      type="text"
+                      formControlName="comment_email"
+                      name="comment_email"
+                      matInput
+                      placeholder="Email"
+                    />
+                    <mat-error
+                      *ngIf="
+                        commentForm.controls['comment_email'].hasError(
+                          'required'
+                        )
+                      "
+                      >Email is required.</mat-error
+                    >
+                    <mat-error
+                      *ngIf="
+                        commentForm.controls['comment_email'].hasError('email')
+                      "
+                      >Email is not in proper format.</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-12">
+                  <mat-form-field>
+                    <textarea
+                      formControlName="comment_box"
+                      name="comment_box"
+                      matInput
+                      placeholder="Type here something..."
+                    ></textarea>
+                    <mat-error
+                      *ngIf="
+                        commentForm.controls['comment_box'].hasError(
+                          'maxLength'
+                        )
+                      "
+                      >Maximum length would be 500.</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div>
+                <button type="submit" mat-raised-button>Add Comment</button>
+              </div>
+            </form>
+          </mat-card>
+        </div>
+      </section>
+    </article>
+    <div class="col-sm-3">
+      <h3>Related News</h3>
     </div>
-    <ng-template #noCommentsFound>
-      <div>No comments found.</div>
-    </ng-template>
-    <div class="comment-form" *ngIf="showCommentForm">
-      <h3>Add Your Comment</h3>
-      <form [formGroup]="commentForm" (submit)="onCommentSubmit()">
-        <input type="hidden" formControlName="parent_id" name="parent_id">
-        <div>
-          <mat-form-field>
-            <input type="text" formControlName="comment_name" name="comment_name" matInput placeholder="Your name">
-            <mat-error *ngIf="commentForm.controls['comment_name'].hasError('required')">Name is required.</mat-error>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <input type="text" formControlName="comment_email" name="comment_email" matInput placeholder="Your email">
-            <mat-error *ngIf="commentForm.controls['comment_email'].hasError('required')">Email is required.</mat-error>
-            <mat-error *ngIf="commentForm.controls['comment_email'].hasError('email')">Email is not in proper format.</mat-error>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field>
-            <textarea formControlName="comment_box" name="comment_box" matInput placeholder="Type here something..."></textarea>
-            <mat-error *ngIf="commentForm.controls['comment_box'].hasError('maxLength')">Maximum length would be 500.</mat-error>
-          </mat-form-field>
-        </div>
-        <div>
-          <button type="submit" mat-raised-button color="primary">Add Comment</button>
-        </div>
-      </form>
-    </div>
-  </section>
+  </div>
 </div>

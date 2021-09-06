@@ -4,7 +4,13 @@
       <app-user-sidebar></app-user-sidebar>
     </div>
     <div class="col-md-9">
-      <h2>Edit Blog Data</h2>
+      <h2>Edit Blog: {{ blogTitle | limitchar: 35 }}</h2>
+      <div class="action-new-btn">
+        <a routerLink="/my-account/my-blogs"
+          ><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Back to
+          list</a
+        >
+      </div>
       <section>
         <mat-card>
           <!-- <mat-card-title>Add Your Sports Blog</mat-card-title> -->
