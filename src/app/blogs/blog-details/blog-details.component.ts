@@ -1,7 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+import { concatMap, map, mergeMap, tap, toArray } from "rxjs/operators";
+
 import { BlogService } from "../blog.service";
+import { Comments } from "src/app/modules/comments";
+import { from } from "rxjs";
 
 @Component({
   selector: "app-blog-details",
@@ -10,7 +15,7 @@ import { BlogService } from "../blog.service";
 })
 export class BlogDetailsComponent implements OnInit {
   blogTitle: string;
-  blogId: string;
+  blogId: number;
   blogImage: string;
   blogDescription: string;
   blogCategory: string;
@@ -23,11 +28,12 @@ export class BlogDetailsComponent implements OnInit {
   listOfChildComments: any;
   constructor(
     private activatedRoute: ActivatedRoute,
-    private blogService: BlogService
+    private blogService: BlogService,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit() {
-    this.blogId = this.activatedRoute.snapshot.paramMap.get("id");
+    this.blogId = +this.activatedRoute.snapshot.paramMap.get("id");
 
     /* Fetching Blog Details */
     this.blogService.getBlogData(this.blogId).subscribe((blogDetails) => {
@@ -39,21 +45,18 @@ export class BlogDetailsComponent implements OnInit {
     });
 
     /* Fetching Blog Comments */
-    this.blogService.fetchComments(this.blogId).subscribe((commentData) => {
-      this.listOfComments = commentData.commentList;
-      this.parentCommentLength = this.listOfComments.length;
-    });
+    this.fetchComments();
 
     /* Fetching Blog Child Comments */
-    this.blogService
+    /* this.blogService
       .fetchChildComments(this.blogId)
       .subscribe((commentData) => {
         this.listOfChildComments = commentData.commentList;
-      });
+      }); */
 
     /* Comment Form Preparing */
     this.commentForm = new FormGroup({
-      parent_id: new FormControl(null, { validators: [Validators.required] }),
+      parent_id: new FormControl(null),
       comment_name: new FormControl(null, {
         validators: [Validators.required, Validators.pattern("^[a-zA-Z ]+$")],
       }),
@@ -61,7 +64,7 @@ export class BlogDetailsComponent implements OnInit {
         validators: [Validators.required, Validators.email],
       }),
       comment_box: new FormControl(null, {
-        validators: [Validators.maxLength(500)],
+        validators: [Validators.required],
       }),
     });
   }
@@ -80,11 +83,11 @@ export class BlogDetailsComponent implements OnInit {
       comment_box: this.commentForm.value.comment_box,
     };
     this.blogService.addComment(this.commentData).subscribe((res) => {
+      if (res.status === 200) {
+        this.toastrService.success(res.message, "Success!!!");
+      }
       /* Fetching Blog Comments */
-      this.blogService.fetchComments(this.blogId).subscribe((commentData) => {
-        this.listOfComments = commentData.commentList;
-        this.parentCommentLength = this.listOfComments.length;
-      });
+      this.fetchComments();
 
       /* Fetching Blog Child Comments */
       this.blogService
@@ -108,5 +111,32 @@ export class BlogDetailsComponent implements OnInit {
 
   onBlogComment() {
     this.showCommentForm = !this.showCommentForm;
+  }
+
+  fetchComments() {
+    var commentsData: Comments[] = [];
+    this.blogService
+      .fetchComments(this.blogId)
+      .pipe(
+        mergeMap((commentRes: any) => {
+          from(commentRes).subscribe((eachComment: any) => {
+            let newComment = {
+              ID: eachComment.comment_ID,
+              parent: eachComment.comment_parent,
+              name: eachComment.comment_author,
+              email: eachComment.comment_author_email,
+              description: eachComment.comment_content,
+              date: eachComment.comment_date,
+            };
+            commentsData.push(newComment);
+          });
+          return commentsData;
+        }),
+        toArray()
+      )
+      .subscribe((commentDataResp) => {
+        this.listOfComments = commentDataResp;
+        this.parentCommentLength = this.listOfComments.length;
+      });
   }
 }

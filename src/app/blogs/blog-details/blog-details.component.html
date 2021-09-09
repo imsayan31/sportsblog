@@ -52,7 +52,7 @@
         >
           <div class="comment-data" *ngFor="let eachComment of listOfComments">
             <h5>{{ eachComment.name }}</h5>
-            <div class="comment-desc">{{ eachComment.comments }}</div>
+            <div class="comment-desc">{{ eachComment.description }}</div>
             <div class="comment-action">
               <a
                 href="javascript:void(0);"
@@ -66,7 +66,9 @@
                 *ngIf="eachChildComment.parent_id === eachComment._id"
               >
                 <h5>{{ eachChildComment.name }}</h5>
-                <div class="comment-desc">{{ eachChildComment.comments }}</div>
+                <div class="comment-desc">
+                  {{ eachChildComment.description }}
+                </div>
               </div>
             </div>
           </div>
@@ -142,12 +144,11 @@
                     ></textarea>
                     <mat-error
                       *ngIf="
-                        commentForm.controls['comment_box'].hasError(
-                          'maxLength'
-                        )
+                        commentForm.controls['comment_box'].hasError('required')
                       "
-                      >Maximum length would be 500.</mat-error
+                      >Type something.</mat-error
                     >
+                    <!-- <mat-error  *ngIf="commentForm.get('comment_box').errors?.maxLength" >Maximum length would be 50.</mat-error> -->
                   </mat-form-field>
                 </div>
               </div>

@@ -56,18 +56,19 @@ export class BlogService {
 
   addComment(addCommentData) {
     return this.http.post<{ status: number; message: string }>(
-      "http://localhost:3000/api/sports-comment/add-comment/",
+      "http://localhost/basic-backend-setup/wp-json/sportsblog/v1/sports-comment/add-comment/",
       addCommentData
     );
   }
 
   fetchComments(blogId) {
     return this.http.get<{ status: number; message: string; commentList: any }>(
-      "http://localhost:3000/api/sports-comment/get-comments/?blogId=" + blogId
+      "http://localhost/basic-backend-setup/wp-json/sportsblog/v1/sports-comment/get-comments/" +
+        blogId
     );
   }
 
-  fetchChildComments(blogId) {
+  fetchChildComments(blogId: number, parentCommentId?: number) {
     return this.http.get<{ status: number; message: string; commentList: any }>(
       "http://localhost:3000/api/sports-comment/get-child-comments?blogId=" +
         blogId

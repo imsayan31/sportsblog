@@ -11,6 +11,7 @@ import { FooterComponent } from "./footer/footer.component";
 import { BlogsComponent } from "./blogs/blogs.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { ToastrModule, ToastrService } from "ngx-toastr";
 import {
   MatButtonModule,
   MatCardModule,
@@ -55,8 +56,9 @@ import { SharedModulesModule } from "./shared-modules/shared-modules.module";
     UserAuthModule,
     MyAccountModule,
     SharedModulesModule,
+    ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [ToastrService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
